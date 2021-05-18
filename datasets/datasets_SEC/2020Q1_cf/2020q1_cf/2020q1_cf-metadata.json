@@ -1,0 +1,756 @@
+{
+    "@context": "http://www.w3.org/ns/csvw",
+    "dialect": {
+        "header": true,
+        "headerRowCount": 1,
+        "delimiter": "\t"
+    },
+    "tables": [
+      
+
+        {
+          "url": "subm.tsv",
+          "tableSchema": {
+            "aboutUrl": "readme.htm",
+            "primaryKey": "accession_number",
+            "columns": [
+              {
+                "name": "accession_number",
+                "titles": [ "Accession Number" ],
+                "required": "true",
+                "datatype": {
+                  "base": "string",
+                  "minLength": 20,
+                  "maxLength": 20
+                },
+                "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+              },
+              {
+                "name": "submission_type",
+                "titles": [ "Submission Type" ],
+                "datatype": {
+                  "base": "string",
+                  "maxLength": 10
+                },
+                "dc:description": "Submission type of filing. Consisting of C: Offering Statement, C-W: Offering Statement Withdrawal, C-U: Progress Update, C-U-W: Progress Update Withdrawal, C/A: Amendment to Offering Statement, C/A-W: Amendment to Offering Statement Withdrawal, C-AR: Annual Report, C-AR-W: Annual Report Withdrawal, C-AR/A: Amendment to Annual Report, C-AR/A-W: Amendment to Annual Report Withdrawal, C-TR: Termination of Reporting, C-TR-W: Termination of Reporting Withdrawal."
+              },
+              {
+                "name": "filing_date",
+                "titles": [ "Filing Date" ],
+                "datatype": {
+                  "base": "date",
+                  "format": "YYYYMMDD HH:MM:SS.S"
+                },
+                "dc:description": "Date filed with the Commission."
+              },
+              {
+                "datatype": {
+                  "base": "decimal",
+                  "maxLength": 10,
+                  "minInclusive": 0
+                },
+                "dc:description": "Central Index Key (CIK). Ten digit number assigned by the Commission to each registrant that submits filings.",
+                "name": "cik",
+                "titles": [ "Central Index Key" ]
+              },
+              {
+                "name": "file_number",
+                "titles": [ "File Number" ],
+                "datatype": {
+                  "base": "string",
+                  "maxLength": 17
+                },
+                "dc:description": "File number provided by the Commission."
+              },
+              {
+                "name": "period",
+                "titles": [ "Period" ],
+                "datatype": {
+                  "base": "date",
+                  "format": "YYYYMMDD HH:MM:SS.S"
+                },
+                "dc:description": "Period-end date for the most recent financial statements provided with the annual report (submissions C-AR, C-AR/A, C-AR-W, C-AR/A-W)."
+              }
+            ]
+
+          }
+        },
+          {
+
+            "url": "issr.tsv",
+            "tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": [ "accession_number" ],
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession Number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 20,
+                    "maxLength": 20
+                  },
+                  "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "isAmendment",
+                  "titles": [ "Is Amendment?" ],
+                  "datatype": {
+                    "base": "decimal",
+                    "minInclusive": 0,
+                    "maxInclusive": 1
+                  },
+                  "dc:description": "TRUE (1) if amendment (Form C/A) is material and investors have five business days to reconfirm."
+                },
+                {
+                  "name": "progressUpdate",
+                  "titles": [ "Progress Update" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Update (Form C-U) describing the progress in meeting the target offering amount."
+                },
+                {
+                  "name": "natureOfAmendment",
+                  "titles": [ "Nature Of Amendment" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Describes the nature of the amendment (Form C/A)."
+                },
+                {
+                  "name": "nameOfIssuer",
+                  "titles": [ "Name of Issuer" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 150
+                  },
+                  "dc:description": "Name of issuer."
+                },
+                {
+                  "name": "legalStatusForm",
+                  "titles": [ "Legal Status" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 25
+                  },
+                  "dc:description": "Issuer form of organization:  Corporation, Limited Partnership, General Partnership, Limited Liability Corporation, Business Trust, and Other."
+                },
+                {
+                  "name": "legalStatusOtherDesc",
+                  "titles": [ "Other Legal Status Description" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "If OTHER is selected for Legal Status of issuer, the description provided."
+                },
+                {
+                  "name": "jurisdictionOrganization",
+                  "titles": [ "Jurisdiction" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 2
+                  },
+                  "dc:description": "Jurisdiction in which the business is registered."
+                },
+                {
+                  "name": "dateIncorporation",
+                  "titles": [ "Date of Incorporation" ],
+                  "datatype": {
+                    "base": "date",
+                    "format": "YYYYMMDD HH:MM:SS.S"
+                  },
+                  "dc:description": "Date organization was formed."
+                },
+                {
+                  "name": "street1",
+                  "titles": [ "Street1" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 40
+                  },
+                  "dc:description": "The first line of the street address."
+                },
+                {
+                  "name": "street2",
+                  "titles": [ "Street2" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 40
+                  },
+                  "dc:description": "The second line of the street address."
+                },
+                {
+                  "name": "city",
+                  "titles": [ "City" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 40
+                  },
+                  "dc:description": "City."
+                },
+				{
+                  "name": "stateOrCountry",
+                  "titles": [ "U.S. State or Territory Code" ],
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  },
+                  "dc:description": "U.S. State or Territory Code."
+                },
+                {
+                  "name": "zipCode",
+                  "titles": [ "Zip Code" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 10
+                  },
+                  "dc:description": "Zip code."
+                },
+                {
+                  "name": "issuerWebsite",
+                  "titles": [ "Issuer Website" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Address of issuer principal website."
+                },
+                {
+                  "name": "companyName",
+                  "titles": [ "Intermediary Company Name" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 150
+                  },
+                  "dc:description": "Name of intermediary through which the offering will be conducted."
+                },
+                {
+                  "name": "commissionCik",
+                  "titles": [ "Intermediary CIK" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 10
+                  },
+                  "dc:description": "CIK number of intermediary."
+                },
+                {
+                  "name": "commissionFileNumber",
+                  "titles": [ "Intermediary File Number" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 17
+                  },
+                  "dc:description": "SEC file number of intermediary."
+                },
+                {
+                  "name": "crdNumber",
+                  "titles": [ "CRD Number of Intermediary" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 9
+                  },
+                  "dc:description": "Central Registration Depository (CRD) Number of intermediary."
+                }
+              ]
+            }
+          },
+          {
+            
+			"url": "disc.tsv",
+			"tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": "accession_number",
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession Number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 20
+                  },
+                  "dc:description": "The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "compensationAmount",
+                  "titles": [ "Compensation Amount" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Amount of compensation to be paid to intermediary, whether as a dollar amount, percentage of offering amount, or good faith estimate."
+                },
+                {
+                  "name": "financialInterest",
+                  "titles": [ "Financial Interest" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Any other direct or indirect interest held by the intermediary or arrangement to acquire an interest."
+                },
+                {
+                  "name": "securityOfferedType",
+                  "titles": [ "Type of Security Offered" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 30
+                  },
+                  "dc:description": "Type of security offered:  Common Stock; Preferred Stock; Debt; Other"
+                },
+                {
+                  "name": "securityOfferedOtherDesc",
+                  "titles": [ "Other Type of Security Offered Description" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Description of Other securities offered."
+                },
+                {
+                  "name": "noOfSecurityOffered",
+                  "titles": [ "Other Type of Security Offered Description" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Number of securities offered."
+                },
+                {
+                  "name": "price",
+                  "titles": [ "Price per Share" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Price per share of security."
+                },
+                {
+                  "name": "priceDeterminationMethod",
+                  "titles": [ "Price Determination Method" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Method for determining the price per share of the security."
+                },
+                {
+                  "name": "offeringAmount",
+                  "titles": [ "Target Offering Amount" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Target offering amount."
+                },
+                {
+                  "name": "overSubscriptionAccepted",
+                  "titles": [ "Over Subscription Accepted?" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 1
+                  },
+                  "dc:description": "YES if oversubscriptions will be accepted."
+                },
+                {
+                  "name": "overSubscriptionAllocationType",
+                  "titles": [ "Over Subscription Allocation Type" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 50
+                  },
+                  "dc:description": "Allocation method for oversubscriptions:  Pro-rata basis; First-come, first-served basis; Other."
+                },
+                {
+                  "name": "descOverSubscription",
+                  "titles": [ "Over Subscription Description" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Description of how subscriptions will be allocated."
+                },
+                {
+                  "name": "maximumOfferingAmount",
+                  "titles": [ "Maximum Offering Amount" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Maximum offering amount.  Required if oversubscriptions are accepted."
+                },
+                {
+                  "name": "deadlineDate",
+                  "titles": [ "Deadline Date" ],
+                  "datatype": {
+                    "base": "date",
+                    "format": "YYYYMMDD HH:MM:SS.S"
+                  },
+                  "dc:description": "Date to reach target offering amount."
+                },
+                {
+                  "name": "currentEmployees",
+                  "titles": [ "Current Employees" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Current number of employees."
+                },
+                {
+                  "name": "totalAssetMostRecentFiscalYear",
+                  "titles": [ "Total Assets Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Total assets for the most recently completed fiscal year."
+                },
+                {
+                  "name": "totalAssetPriorFiscalYear",
+                  "titles": [ "Total Assets Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Total assets for the prior fiscal year."
+                },
+                {
+                  "name": "cashEquiMostRecentFiscalYear",
+                  "titles": [ "Cash and Cash Equivalents Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Cash and cash equivalents for the most recently completed fiscal year."
+                },
+                {
+                  "name": "cashEquiPriorFiscalYear",
+                  "titles": [ "Cash and Cash Equivalents Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Cash and cash equivalents for the prior fiscal year"
+                },
+                {
+                  "name": "actReceivedMostRecentFiscalYear",
+                  "titles": [ "Accounts Receivable Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Accounts Receivable for the most recently completed fiscal year."
+                },
+                {
+                  "name": "actReceivedPriorFiscalYear",
+                  "titles": [ "Accounts Receivable Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Accounts Receivable for the prior fiscal year."
+                },
+                {
+                  "name": "shortTermDebtMostRecentFiscalYear",
+                  "titles": [ "Short-term Debt Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Short-term debt for the most recently completed fiscal year."
+                },
+                {
+                  "name": "shortTermDebtPriorFiscalYear",
+                  "titles": [ "Short-term Debt Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Short-term debt for the prior fiscal year."
+                },
+                {
+                  "name": "longTermDebtMostRecentFiscalYear",
+                  "titles": [ "Long-term Debt Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Long-term debt for the most recently completed fiscal year."
+                },
+                {
+                  "name": "longTermDebtPriorFiscalYear",
+                  "titles": [ "Long-term Debt Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Long-term debt for the prior fiscal year."
+                },
+                {
+                  "name": "revenueMostRecentFiscalYear",
+                  "titles": [ "Revenue/Sales Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Revenue/Sales for the most recently completed fiscal year."
+                },
+                {
+                  "name": "revenuePriorFiscalYear",
+                  "titles": [ "Revenue/Sales Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Revenue/Sales for the prior fiscal year."
+                },
+                {
+                  "name": "costGoodsSoldMostRecentFiscalYear",
+                  "titles": [ "Cost of Goods Sold Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Cost of goods sold for the most recently completed fiscal year."
+                },
+                {
+                  "name": "costGoodsSoldPriorFiscalYear",
+                  "titles": [ "Cost of Goods Sold Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Cost of goods sold for the prior fiscal year."
+                },
+                {
+                  "name": "taxPaidMostRecentFiscalYear",
+                  "titles": [ "Taxes Paid Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Taxes paid for the most recently completed fiscal year."
+                },
+                {
+                  "name": "taxPaidPriorFiscalYear",
+                  "titles": [ "Taxes Paid Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Taxes paid for the prior fiscal year."
+                },
+                {
+                  "name": "netIncomeMostRecentFiscalYear",
+                  "titles": [ "Net Income Most Recent Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Net income for the most recently completed fiscal year."
+                },
+                {
+                  "name": "netIncomePriorFiscalYear",
+                  "titles": [ "Net Income Prior Fiscal Year" ],
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Net income for the prior fiscal year."
+                }
+              ]
+            }
+          },
+          {
+            "url": "jurs.tsv",
+            "tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": [
+                "accession_number",
+                "id"
+              ],
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession Number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 20,
+                    "maxLength": 20
+                  },
+                  "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "id",
+                  "titles": [ "id" ],
+                  "required": "true",
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Jurisdiction index key."
+                },
+                {
+                  "name": "issueJurisdictionSecuritiesOffering",
+                  "titles": [ "Issue Offerings Jurisdictions" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 2
+                  },
+                  "dc:description": "Jurisdictions in which the issuer intends to offer the securities (see appendix for codes and descriptions)."
+                }
+              ],
+
+              "foreignKeys": [
+                {
+                  "columnReference": "accession_number",
+                  "reference": {
+                    "resource": "subm.tsv",
+                    "columnReference": "accession_number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "url": "docs.tsv",
+            "tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": [
+                "accession_number",
+                "seq"
+              ],
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 20,
+                    "maxLength": 20
+                  },
+                  "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "seq",
+                  "titles": [ "Sequence" ],
+                  "required": "true",
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Document sequence number."
+                },
+                {
+                  "name": "description",
+                  "titles": [ "Document description" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Document description."
+                },
+                {
+                  "name": "document",
+                  "titles": [ "Document File Name" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Document File Name."
+                },
+                {
+                  "name": "type",
+                  "titles": [ "Document Type Code" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 25
+                  },
+                  "dc:description": "Document Type Code."
+                }
+              ],
+              "foreignKeys": [
+                {
+                  "columnReference": "accession_number",
+                  "reference": {
+                    "resource": "subm.tsv",
+                    "columnReference": "accession_number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "url": "isig.tsv",
+            "tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": [
+                "accession_number",
+                "id"
+              ],
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession Number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 20,
+                    "maxLength": 20
+                  },
+                  "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "id",
+                  "titles": [ "id" ],
+                  "required": "true",
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Issuer signature index key."
+                },
+                {
+                  "name": "issuer",
+                  "titles": [ "Issuer" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 150
+                  },
+                  "dc:description": "Name associated with issuer."
+                },
+                {
+                  "name": "issuerSignature",
+                  "titles": [ "Issuer Signature" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 150
+                  },
+                  "dc:description": "Full name of person signing as the issuer."
+                },
+                {
+                  "name": "issuerTitle",
+                  "titles": [ "Issuer Title" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Title of individual signing as issuer."
+                }
+              ],
+              "foreignKeys": [
+                {
+                  "columnReference": "accession_number",
+                  "reference": {
+                    "resource": "subm.tsv",
+                    "columnReference": "accession_number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "url": "sign.tsv",
+            "tableSchema": {
+              "aboutUrl": "readme.htm",
+              "primaryKey": [
+                "accession_number",
+                "id"
+              ],
+              "columns": [
+                {
+                  "name": "accession_number",
+                  "titles": [ "Accession Number" ],
+                  "required": "true",
+                  "datatype": {
+                    "base": "string",
+                    "minLength": 20,
+                    "maxLength": 20
+                  },
+                  "dc:description": "Accession Number. The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission."
+                },
+                {
+                  "name": "id",
+                  "titles": [ "id" ],
+                  "required": "true",
+                  "datatype": { "base": "decimal" },
+                  "dc:description": "Signature index key."
+                },
+                {
+                  "name": "personSignature",
+                  "titles": [ "Person Signature" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 150
+                  },
+                  "dc:description": "Full name of person signing as the form."
+                },
+                {
+                  "name": "personTitle",
+                  "titles": [ "Title" ],
+                  "datatype": {
+                    "base": "string",
+                    "maxLength": 256
+                  },
+                  "dc:description": "Title of person signing the form."
+                },
+                {
+                  "name": "signatureDate",
+                  "titles": [ "Signature Date" ],
+                  "datatype": {
+                    "base": "date",
+                    "format": "YYYYMMDD HH:MM:SS.S"
+                  },
+                  "dc:description": "Date of signature."
+                }
+              ],
+              "foreignKeys": [
+                {
+                  "columnReference": "accession_number",
+                  "reference": {
+                    "resource": "subm.tsv",
+                    "columnReference": "accession_number"
+                  }
+                }
+              ]
+            }
+          }
+
+
+        
+        ]
+      }
