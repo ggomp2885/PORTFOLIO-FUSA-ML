@@ -1,0 +1,388 @@
+{
+  "metadata": {
+    "version": 1
+  },
+  "nodes": [
+    {
+      "node_id": "79e49d9e-84d8-45c4-aba6-4b4b1cb97173",
+      "type": "SOURCE",
+      "operator": "sagemaker.s3_source_0.1",
+      "parameters": {
+        "dataset_definition": {
+          "__typename": "S3CreateDatasetDefinitionOutput",
+          "datasetSourceType": "S3",
+          "name": "MVP_Success_Assigned_CSV.csv",
+          "description": null,
+          "s3ExecutionContext": {
+            "__typename": "S3ExecutionContext",
+            "s3Uri": "s3://funders-usa-sec-datasets/datasets_SEC/MVP_Success_Assigned_CSV.csv",
+            "s3ContentType": "csv",
+            "s3HasHeader": true
+          }
+        }
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "default",
+          "sampling": {
+            "sampling_method": "sample_by_ratio",
+            "sample_ratio": 1
+          }
+        }
+      ]
+    },
+    {
+      "node_id": "59afc850-1439-4f22-aeaa-204de292fef1",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.infer_and_cast_type_0.1",
+      "parameters": {},
+      "trained_parameters": {
+        "schema": {
+          "_c0": "long",
+          "CIK": "long",
+          "FILING_DATE": "date",
+          "SUBMISSION_TYPE": "string",
+          "OFFERINGAMOUNT": "float",
+          "PROGRESSUPDATE": "string",
+          "NATUREOFAMENDMENT": "string",
+          "MAXIMUMOFFERINGAMOUNT": "float",
+          "CURRENTEMPLOYEES": "float",
+          "TOTALASSETMOSTRECENTFISCALYEAR": "float",
+          "TOTALASSETPRIORFISCALYEAR": "float",
+          "CASHEQUIMOSTRECENTFISCALYEAR": "float",
+          "CASHEQUIPRIORFISCALYEAR": "float",
+          "ACTRECEIVEDRECENTFISCALYEAR": "float",
+          "ACTRECEIVEDPRIORFISCALYEAR": "float",
+          "SHORTTERMDEBTMRECENTFISCALYEAR": "float",
+          "SHORTTERMDEBTPRIORFISCALYEAR": "float",
+          "LONGTERMDEBTRECENTFISCALYEAR": "float",
+          "LONGTERMDEBTPRIORFISCALYEAR": "float",
+          "NETINCOMEMOSTRECENTFISCALYEAR": "float",
+          "NETINCOMEPRIORFISCALYEAR": "float",
+          "Form_C_Number": "long",
+          "Funding_Success": "long"
+        }
+      },
+      "inputs": [
+        {
+          "name": "default",
+          "node_id": "79e49d9e-84d8-45c4-aba6-4b4b1cb97173",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "a71d93fe-7e62-49cc-9d5f-99cb73ee0997",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "PROGRESSUPDATE"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "59afc850-1439-4f22-aeaa-204de292fef1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "b5d9c1d5-00e7-446c-b383-fdc83c1f0d6d",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "NATUREOFAMENDMENT"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "a71d93fe-7e62-49cc-9d5f-99cb73ee0997",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "1fa6954b-bbfa-4491-a744-bae341b70d98",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "CIK"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "b5d9c1d5-00e7-446c-b383-fdc83c1f0d6d",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "7f156741-1f18-4137-882d-5f6af9decc03",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "SUBMISSION_TYPE"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "1fa6954b-bbfa-4491-a744-bae341b70d98",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "84f84314-8706-4a9f-b744-f49c46dcb5ac",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "FILING_DATE"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "7f156741-1f18-4137-882d-5f6af9decc03",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "19d6c8f1-6df8-4645-84a0-d8a337abba11",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "_c0"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "84f84314-8706-4a9f-b744-f49c46dcb5ac",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "7db19d60-1c09-48b0-a1db-7efe3ce3f0f1",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.cast_single_data_type_0.1",
+      "parameters": {
+        "column": "CURRENTEMPLOYEES",
+        "original_data_type": "Float",
+        "data_type": "long"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "19d6c8f1-6df8-4645-84a0-d8a337abba11",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "69dd8f36-070e-40fe-803f-e314c5238ee1",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_missing_0.1",
+      "parameters": {
+        "operator": "Drop missing",
+        "drop_missing_parameters": {
+          "dimension": "Drop Rows",
+          "drop_rows_parameters": {
+            "input_column": "MAXIMUMOFFERINGAMOUNT"
+          }
+        },
+        "impute_parameters": {
+          "column_type": "Numeric",
+          "numeric_parameters": {
+            "strategy": "Approximate Median"
+          }
+        },
+        "fill_missing_parameters": {}
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "7db19d60-1c09-48b0-a1db-7efe3ce3f0f1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "b92d683d-57a1-45b2-9255-bae58c625c42",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_outliers_0.1",
+      "parameters": {
+        "operator": "Min-max numeric outliers",
+        "min_max_numeric_outliers_parameters": {
+          "input_column": "OFFERINGAMOUNT",
+          "fix_method": "Remove",
+          "lower_threshold": "9000",
+          "upper_threshold": "1200000"
+        },
+        "standard_deviation_numeric_outliers_parameters": {
+          "standard_deviations": 4
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "69dd8f36-070e-40fe-803f-e314c5238ee1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "79e91410-c5ab-495d-90ce-df9d6d367984",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_outliers_0.1",
+      "parameters": {
+        "operator": "Min-max numeric outliers",
+        "min_max_numeric_outliers_parameters": {
+          "input_column": "CURRENTEMPLOYEES",
+          "fix_method": "Remove",
+          "upper_threshold": "40",
+          "lower_threshold": "0"
+        },
+        "standard_deviation_numeric_outliers_parameters": {
+          "standard_deviations": 4
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "b92d683d-57a1-45b2-9255-bae58c625c42",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "7f74dd33-ba18-4f6b-b77b-18adffdc6dbc",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_outliers_0.1",
+      "parameters": {
+        "operator": "Min-max numeric outliers",
+        "min_max_numeric_outliers_parameters": {
+          "input_column": "MAXIMUMOFFERINGAMOUNT",
+          "fix_method": "Remove",
+          "upper_threshold": "1200000",
+          "lower_threshold": "9000"
+        },
+        "standard_deviation_numeric_outliers_parameters": {
+          "standard_deviations": 4
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "79e91410-c5ab-495d-90ce-df9d6d367984",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "fb2f2fd8-f37c-402c-9fca-ce315e694646",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Move column",
+        "move_column_parameters": {
+          "move_type": "Move to start",
+          "move_to_start_parameters": {
+            "column_to_move": "Funding_Success"
+          }
+        },
+        "drop_column_parameters": {}
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "7f74dd33-ba18-4f6b-b77b-18adffdc6dbc",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}
